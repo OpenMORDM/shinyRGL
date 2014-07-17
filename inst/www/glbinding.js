@@ -28,7 +28,10 @@ $.extend(glOutputBinding, {
         newObj.onPan(function(pan){
           Shiny.onInputChange('.clientdata_gl_output_' + el.id + '_pan', pan.getAsArray());
         });
-        
+        newObj.onClick(function(x, y){
+          Shiny.onInputChange(el.id + '.click', [x,y]);
+          Shiny.onInputChange('.clientdata_gl_output_' + el.id + '_click', [x,y]);
+        });
       } else{
         throw new Error("Could not find method of starting WebGL scene.");
       }
